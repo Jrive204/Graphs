@@ -12,7 +12,7 @@ def earliest_ancestor(ancestors, starting_node):
 
     def recursive_ancestor(child, level=0):
         # nonlocal parent_dict
-        print("recurs", parent_dict, child)
+        print(f"\n recurs -- child: {child} {parent_dict}")
         if child not in parent_dict:
             print("\n child not in parent dict, appends to list",
                   (child, level), "\n")
@@ -41,4 +41,4 @@ def earliest_ancestor(ancestors, starting_node):
 if __name__ == "__main__":
     test_ancestors = [(1, 3), (2, 3), (3, 6), (5, 6), (5, 7),
                       (4, 5), (4, 8), (8, 9), (11, 8), (10, 1)]
-    print(earliest_ancestor(test_ancestors, 6))
+    print(earliest_ancestor(test_ancestors, 9))

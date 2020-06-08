@@ -101,13 +101,8 @@ class Graph:
 
         for n in path - visited:
             # print(
-            #     n,
-            #     "Next",
-            #     path,
-            #     "path",
-            #     path -
-            #     visited,
-            #     "sub")
+            # f'path-> {path} visited -> {visited}, diff between sets:
+            # {path-visited} -- Next:{n} ')
             self.dft_recursive(n, visited)
         return visited
 
@@ -123,7 +118,6 @@ class Graph:
         while q.size() > 0:
             # get the first path from the queue
             path = q.dequeue()
-            # v = q.dequeue()
             # get the last node from the path
             node = path[-1]
             # path found
