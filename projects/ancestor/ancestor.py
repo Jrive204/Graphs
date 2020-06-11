@@ -5,13 +5,12 @@ def earliest_ancestor(ancestors, starting_node):
     parent_dict = defaultdict(list)
     for pair in ancestors:
         parent_dict[pair[1]].append(pair[0])
-        print(pair[0], pair[1], "PAIR", pair, parent_dict)
+        print(pair[0], pair[1], "PAIR", pair, dict.__repr__(parent_dict))
 
     if starting_node not in parent_dict:
         return -1
 
     def recursive_ancestor(child, level=0):
-        # nonlocal parent_dict
         print(f"\n recurs -- child: {child} {parent_dict}")
         if child not in parent_dict:
             print("\n child not in parent dict, appends to list",

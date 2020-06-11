@@ -1,1 +1,1 @@
-yield from
+d

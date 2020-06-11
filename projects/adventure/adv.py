@@ -55,13 +55,13 @@ while len(visited) < len(world.rooms):
         paths.push(path[move])
         player.travel(path[move])  # Move one of the available paths
         traversal_path.append(path[move])
-        # print(f'Available moves: {path}, Direction: {path[move]}')
+        print(f'Available moves: {path}, Direction: {path[move]}')
 
     else:
         move_back = paths.pop()
         player.travel(opposite_dir[move_back])  # move back opposite direction
         traversal_path.append(opposite_dir[move_back])
-        # print(move_back, "going back")
+        print(move_back, "going back")
 
 
 # TRAVERSAL TEST - DO NOT MODIFY
@@ -85,12 +85,12 @@ else:
 # UNCOMMENT TO WALK AROUND
 #######
 
-player.current_room.print_room_description(player)
-while True:
-    cmds = input("-> ").lower().split(" ")
-    if cmds[0] in ["n", "s", "e", "w"]:
-        player.travel(cmds[0], True)
-    elif cmds[0] == "q":
-        break
-    else:
-        print("I did not understand that command.")
+# player.current_room.print_room_description(player)
+# while True:
+#     cmds = input("-> ").lower().split(" ")
+#     if cmds[0] in ["n", "s", "e", "w"]:
+#         player.travel(cmds[0], True)
+#     elif cmds[0] == "q":
+#         break
+#     else:
+#         print("I did not understand that command.")

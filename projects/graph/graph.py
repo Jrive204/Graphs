@@ -2,6 +2,7 @@
 Simple graph implementation
 """
 from util import Stack, Queue  # These may come in handy
+from collections import defaultdict
 
 
 class Graph:
@@ -104,6 +105,7 @@ class Graph:
             # f'path-> {path} visited -> {visited}, diff between sets:
             # {path-visited} -- Next:{n} ')
             self.dft_recursive(n, visited)
+
         return visited
 
     def bfs(self, starting_vertex, destination_vertex):
@@ -120,6 +122,7 @@ class Graph:
             path = q.dequeue()
             # get the last node from the path
             node = path[-1]
+            # print("Node:", node, "Path:", path, "QUEUE:", q.queue, "---")
             # path found
             if node == destination_vertex:
                 return path
@@ -129,6 +132,8 @@ class Graph:
                 new_path = list(path)
                 new_path.append(adjacent)
                 q.enqueue(new_path)
+                # print("Neighbors", adjacent, new_path,
+                # self.get_neighbors(node))
 
     def dfs(self, starting_vertex, destination_vertex):
         """
@@ -167,17 +172,26 @@ class Graph:
           depth - first order.	        depth - first order.
           This should be done using recursion.	        This should be done using recursion.
           """
+        print("\n", visited, "<-- LIST", "Current Vert:", starting_vertex)
         if starting_vertex == destination_vertex:
+            print("Found Target ===>", starting_vertex)
             return visited + [starting_vertex]
         else:
             visited.append(starting_vertex)
             for edge in self.get_neighbors(starting_vertex):
+                print(
+                    f'edge: {edge} --  neighbors of {starting_vertex}: {self.get_neighbors(starting_vertex)}')
                 if edge not in visited:
+                    print(
+                        f" {edge} not in visited, enter recursion, append {starting_vertex}  if not in List")
                     path = self.dfs_recursive(
                         edge, destination_vertex, visited)
-                    if path:
+                    if path is not None:
+                        print(path, "PATH")
                         return path
             visited.remove(starting_vertex)
+            print(
+                f"Delete Node: {starting_vertex} its edge {edge} has been visited -- No path to {destination_vertex}")
 
 
 if __name__ == '__main__':
@@ -248,3 +262,34 @@ if __name__ == '__main__':
     print(graph.dfs(1, 6))
     print(graph.dfs_recursive(1, 6))
     # print(list(graph.dfs_recursive(1, 6)))
+
+# islands = [
+#     [0, 1, 0, 1, 0],
+#     [1, 1, 0, 1, 1],
+#     [0, 0, 1, 0, 0],
+#     [1, 0, 1, 0, 0],
+#     [1, 1, 0, 0, 0],
+# ]
+
+# lst = defaultdict(list)
+
+
+# for indx, i in enumerate(islands):
+#     for ix, x in enumerate(i):
+#         # lst[0].append((indx, ix))
+#         if islands[indx][ix] == 1:
+#             # lst[1].append((indx, ix))
+#             if indx > 0 and islands[indx - 1][ix] == 1:
+#                 lst[(indx, ix)].append((indx - 1, ix))
+#             if indx < len(islands) - 1 and islands[indx + 1][ix] == 1:
+#                 lst[(indx, ix)].append((indx + 1, ix))
+#             if ix > 0 and islands[indx][ix - 1] == 1:
+#                 lst[(indx, ix)].append((indx, ix - 1))
+#             if ix < len(islands) - 1 and islands[indx][ix + 1] == 1:
+#                 lst[(indx, ix)].append((indx, ix + 1))
+#             # count += 1
+
+
+# print(dict.__repr__(lst))
+
+# print(indx[0], ix[0])

@@ -74,6 +74,7 @@ class SocialGraph:
         random.shuffle(possible_friendships)
 
         for i in range(num_users * avg_friendships // 2):
+            print(num_users * avg_friendships // 2, "Degrees")
             friendship = possible_friendships[i]
             self.add_friendship(friendship[0], friendship[1])
         # invocation_count = 0
